@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 const features = [
   {
     icon: "☎",
@@ -39,6 +43,7 @@ const features = [
 ];
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <main className="relative isolate min-h-screen overflow-hidden bg-white">
 
@@ -64,40 +69,90 @@ export default function Home() {
 
 
       {/* NAVBAR */}
-      <nav className="sticky top-0 z-50 border-b border-purple-100 bg-white/70 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+      
+{/* NAVBAR */}
+<nav className="sticky top-0 z-50 border-b border-purple-100 bg-white/80 backdrop-blur-xl">
+  <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
 
-          <a href="#" className="text-2xl font-bold tracking-tight text-black">
-            AI FrontDesk<span className="text-[#7547C8]">.</span>
-          </a>
+    {/* LOGO */}
+    <a href="#" className="text-xl font-bold tracking-tight text-black sm:text-2xl">
+      AI FrontDesk<span className="text-[#7547C8]">.</span>
+    </a>
 
-          <div className="hidden items-center gap-8 text-sm font-medium text-gray-600 md:flex">
-            <a href="#features" className="hover:text-purple-700">
-              Features
-            </a>
-            <a href="#how-it-works" className="hover:text-purple-700">
-              How it works
-            </a>
-            <a href="#about" className="hover:text-purple-700">
-              About
-            </a>
-            <a href="#pricing" className="hover:text-purple-700">
-              Pricing
-            </a>
-            <Link href="/demo" className="hover:text-purple-700">
-              Demo Session
-            </Link>
-          </div>
+    {/* DESKTOP NAVIGATION */}
+    <div className="hidden items-center gap-6 text-sm font-medium text-gray-600 lg:flex xl:gap-8">
+      <a href="#features" className="transition hover:text-purple-700">
+        Features
+      </a>
+      <a href="#how-it-works" className="transition hover:text-purple-700">
+        How it works
+      </a>
+      <a href="#about" className="transition hover:text-purple-700">
+        About
+      </a>
+      <a href="#pricing" className="transition hover:text-purple-700">
+        Pricing
+      </a>
+      <Link href="/demo" className="transition hover:text-purple-700">
+        Demo Session
+      </Link>
+    </div>
 
-          <a
-            href="#get-started"
-            className="rounded-xl bg-[#7547C8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#6036AD]"
+    {/* DESKTOP GET STARTED */}
+    <a
+      href="#get-started"
+      className="hidden rounded-xl bg-[#7547C8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#6036AD] lg:inline-flex"
+    >
+      Get Started →
+    </a>
+
+    {/* MOBILE MENU BUTTON */}
+    <button
+      type="button"
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+      className="rounded-lg p-2 text-[#7547C8] transition hover:bg-purple-50 lg:hidden"
+      aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+      aria-expanded={mobileMenuOpen}
+    >
+      {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+    </button>
+  </div>
+
+  {/* MOBILE DROPDOWN */}
+  {mobileMenuOpen && (
+    <div className="border-t border-purple-100 bg-white px-5 py-4 shadow-lg lg:hidden">
+      <div className="mx-auto flex max-w-7xl flex-col gap-1">
+
+        {[
+          { name: "Features", href: "#features" },
+          { name: "How it works", href: "#how-it-works" },
+          { name: "About", href: "#about" },
+          { name: "Pricing", href: "#pricing" },
+          { name: "Demo Session", href: "/demo" },
+        ].map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            onClick={() => setMobileMenuOpen(false)}
+            className="rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-purple-50 hover:text-purple-700"
           >
-            Get Started →
-          </a>
+            {item.name}
+          </Link>
+        ))}
 
-        </div>
-      </nav>
+        <a
+          href="#get-started"
+          onClick={() => setMobileMenuOpen(false)}
+          className="mt-2 rounded-xl bg-[#7547C8] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#6036AD]"
+        >
+          Get Started →
+        </a>
+
+      </div>
+    </div>
+  )}
+</nav>
+
 
           
           {/* HERO SECTION */}
@@ -563,7 +618,7 @@ export default function Home() {
             <input
               type="text"
               placeholder="Enter your name"
-              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100"
+              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100 text-black"
             />
           </div>
 
@@ -574,7 +629,7 @@ export default function Home() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100"
+              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100 text-black"
             />
           </div>
 
@@ -585,7 +640,7 @@ export default function Home() {
             <input
               type="text"
               placeholder="How can we help?"
-              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100"
+              className="w-full rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100 text-black"
             />
           </div>
 
@@ -596,7 +651,7 @@ export default function Home() {
             <textarea
               rows={4}
               placeholder="Write your message..."
-              className="w-full resize-none rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100"
+              className="w-full resize-none rounded-xl border border-purple-100 bg-[#FAF9FF] px-4 py-3 outline-none transition focus:border-[#7547C8] focus:ring-2 focus:ring-purple-100 text-black"
             />
           </div>
 
