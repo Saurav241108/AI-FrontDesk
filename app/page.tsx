@@ -99,12 +99,12 @@ export default function Home() {
     </div>
 
     {/* DESKTOP GET STARTED */}
-    <a
-      href="#get-started"
-      className="hidden rounded-xl bg-[#7547C8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#6036AD] lg:inline-flex"
-    >
-      Get Started →
-    </a>
+    <Link
+  href="/signup"
+  className="hidden rounded-xl bg-[#7547C8] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#6036AD] lg:inline-flex"
+>
+  Get Started →
+</Link>
 
     {/* MOBILE MENU BUTTON */}
     <button
@@ -140,13 +140,13 @@ export default function Home() {
           </Link>
         ))}
 
-        <a
-          href="#get-started"
-          onClick={() => setMobileMenuOpen(false)}
-          className="mt-2 rounded-xl bg-[#7547C8] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#6036AD]"
-        >
-          Get Started →
-        </a>
+        <Link
+  href="/signup"
+  onClick={() => setMobileMenuOpen(false)}
+  className="mt-2 rounded-xl bg-[#7547C8] px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-[#6036AD]"
+>
+  Get Started →
+</Link>
 
       </div>
     </div>
@@ -481,12 +481,12 @@ export default function Home() {
             with an intelligent AI receptionist.
           </p>
 
-          <a
-            href="#"
-            className="mt-9 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-[#7547C8] transition hover:bg-purple-50"
-          >
-            Get Started Today →
-          </a>
+          <Link
+  href="/signup"
+  className="mt-9 inline-block rounded-xl bg-white px-8 py-4 font-semibold text-[#7547C8] transition hover:bg-purple-50"
+>
+  Get Started Today →
+</Link>
 
         </div>
 
